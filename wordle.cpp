@@ -172,7 +172,7 @@ void displayKeyboard(vector<char> grayChars, vector<char> yellowChars, vector<ch
 
         // Print a new line after each row of the keyboard
         if (i == 9 ) {
-            cout << endl << OFFSET << "  ";
+            cout << endl << OFFSET << " ";
         } else if (i == 18) {
             cout << endl << OFFSET << "   ";
         }
