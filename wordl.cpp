@@ -75,21 +75,25 @@ int main() {
         while (guessesLeft > 0 && !win) {
             //Display the gamescreen
             system("CLS");
-            cout << OFFSET << OFFSET << "   " << GREEN <<"WORDL" << RESET << endl;
+            cout << endl << OFFSET << OFFSET << "   " << GREEN <<"WORDL" << RESET << endl << endl;
             displayGuesses(coloredGuesses);
             displayKeyboard(guessedLetters, yellowLetters, greenLetters, keyboard);
+
             //Display errorMessage if there is any, then reset
             cout << OFFSET << "  " << errorMessage;
             errorMessage = "";
+
             //Get the guess
             cout << endl << OFFSET << OFFSET << "Guess: ";
             cin >> guess;
             cout << endl;
             
+            //Check if the guess is valid
             if (!isValidGuess(guess, &errorMessage)) {
                 continue;
             }
 
+            //Add the guess to the guesses vector
             guesses.push_back(guess);
             guessesLeft--;
 
@@ -98,13 +102,29 @@ int main() {
             
             //check for win condition
             win = word == guess;
-            if (win) cout << endl << OFFSET << "  " << GREEN << "CONGRATULATIONS!" << RESET << endl << endl;
-            if (!win && guessesLeft == 0) cout << endl << OFFSET <<"The word was " << GREEN << word << RESET << endl << endl;
+            if (win) {
+                //Victory screen
+                system("CLS");
+                cout << endl << OFFSET << OFFSET << "   " << GREEN <<"WORDL" << RESET << endl << endl;
+                displayGuesses(coloredGuesses);
+                displayKeyboard(guessedLetters, yellowLetters, greenLetters, keyboard);
+                cout << endl << OFFSET << OFFSET << "Guess: " << word;
+                cout << endl << endl << OFFSET << "  " << GREEN << "CONGRATULATIONS!" << RESET << endl << endl;
+            }
+            
+            if (!win && guessesLeft == 0) {
+                //Defeat screen
+                system("CLS");
+                cout << endl << OFFSET << OFFSET << "   " << GREEN <<"WORDL" << RESET << endl << endl;
+                displayGuesses(coloredGuesses);
+                displayKeyboard(guessedLetters, yellowLetters, greenLetters, keyboard);
+                cout << endl << OFFSET << OFFSET << "Guess: " << word;
+                cout << endl << endl << OFFSET <<"The word was " << GREEN << word << RESET << endl << endl;
+            } 
         }
-        
+        //END OF ROUND
         cout << WHITE << OFFSET << " 1 for Play Again" << endl << OFFSET << "    0 for Quit" << endl << OFFSET << OFFSET << OFFSET << " " << RESET;
-        cin >> playAgain;
-        cout << endl;
+        cin >> playAgain; cout << endl;
         
         if (playAgain != 1)
             playing = false;
