@@ -21,3 +21,4 @@ As of right now to play the game on windows you need to compile the .cpp to an .
 g++ -o WORDLE.exe wordle.cpp words_array.cpp
 
 This can be done with mingw.
+I have added an icon for the game which i stole from google. Please dont sue me.

@@ -5,8 +5,9 @@
 #include <vector>
 #include <random>
 #include <algorithm>
-#include <ctime> // Include ctime for time() function
+#include <ctime> 
 #include <fstream>
+#include <windows.h>
 using namespace std;
 
 //colors for the cout statements
@@ -17,23 +18,21 @@ const string RED = "\033[31m";
 const string GREEN = "\033[32m";
 const string YELLOW = "\033[33m";
 const string OFFSET = "    ";
+const string PURPLE_BOLD = "\033[1;35m";
 
-//loading words txt file
+
+//getting char* wordsArray from words_array.cpp file
+//Will be loaded into wordList with loadWords()
 extern const char *wordsArray[];
 static vector<string> wordList;
-
-void loadWords() {
-    for (int i = 0; wordsArray[i] != NULL; i++) {
-        wordList.push_back(wordsArray[i]);
-    }
-}
 
 //keyboard
 static vector<char> keyboard = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
                                 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l',
                                 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
 
-                         //Function Prototypes
+                         //FUNCTION PROTOTYPES
+void loadWords();
 void displayGuesses(vector<string> guesses);
 void displayKeyboard(vector<char> usedChars, vector<char> yellowChars, vector<char> greenChars, vector<char> keyboard);
 void updateLetterColors(vector<char>* grayChars, vector<char>* yellowChars, vector<char>* greenChars, 
@@ -45,24 +44,20 @@ bool isValidGuess(string word, string* errorMessage);
 
 
 int main() {
-                        //setup
+                        //SETUP
     // Seed the random number generator
     srand(time(0));
     //load words into wordList
     loadWords();
-    //clear the screen
-    system("CLS");
     //create variables
     bool playing = true;
     int playAgain = 0;
     string errorMessage;
     string guess;
-    
-    cout << WHITE << OFFSET << "Welcome to Wordle!" << RESET << endl;
 
-    //playloop
+                    //GAME LOOP
     while(playing) {
-        //Reset
+        //RESET
         playAgain = 0;
         bool win = false;
         vector<char> guessedLetters = {};
@@ -72,15 +67,15 @@ int main() {
         vector<string> coloredGuesses = {};
         int guessesLeft = 6;
 
-        //Choose a word
+        //CHOOSE A WORD
         string word = chooseWord(wordList);
 
 
-        //Play loop
+        //ROUND LOOP
         while (guessesLeft > 0 && !win) {
             //Display the gamescreen
             system("CLS");
-            cout << endl << endl;
+            cout << OFFSET << OFFSET << "   " << GREEN <<"WORDL" << RESET << endl;
             displayGuesses(coloredGuesses);
             displayKeyboard(guessedLetters, yellowLetters, greenLetters, keyboard);
             //Display errorMessage if there is any, then reset
@@ -100,11 +95,6 @@ int main() {
 
             //Game logic, coloring the keyboard and the guesses to print
             updateLetterColors(&guessedLetters, &yellowLetters, &greenLetters, guesses, word, &coloredGuesses);
-
-            //Displaying the game
-            system("CLS");
-            displayGuesses(coloredGuesses);
-            displayKeyboard(guessedLetters, yellowLetters, greenLetters, keyboard);
             
             //check for win condition
             win = word == guess;
@@ -120,7 +110,7 @@ int main() {
             playing = false;
     }
 
-    //done
+    //Game done
     return 69;
 }
 
@@ -239,4 +229,10 @@ bool isValidGuess(string word, string* errorMessage) {
         return false;
     }
     return true;
+}
+
+void loadWords() {
+    for (int i = 0; wordsArray[i] != NULL; i++) {
+        wordList.push_back(wordsArray[i]);
+    }
 }
