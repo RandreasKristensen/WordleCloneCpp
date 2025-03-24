@@ -19,15 +19,13 @@ const string YELLOW = "\033[33m";
 const string OFFSET = "    ";
 
 //loading words txt file
+extern const char *wordsArray[];
 static vector<string> wordList;
 
 void loadWords() {
-    ifstream file("words.txt");
-    string word;
-    while (getline(file, word)) {
-        wordList.push_back(word);
+    for (int i = 0; wordsArray[i] != NULL; i++) {
+        wordList.push_back(wordsArray[i]);
     }
-    file.close();
 }
 
 //keyboard
