@@ -111,7 +111,7 @@ int main() {
             if (!win && guessesLeft == 0) cout << endl << OFFSET <<"The word was " << GREEN << word << RESET << endl << endl;
         }
         
-        cout << WHITE << OFFSET << " 1 for Play Again" << endl << OFFSET << "    0 for Quit" << endl << OFFSET << OFFSET << OFFSET << RESET;
+        cout << WHITE << OFFSET << " 1 for Play Again" << endl << OFFSET << "    0 for Quit" << endl << OFFSET << OFFSET << OFFSET << " " << RESET;
         cin >> playAgain;
         cout << endl;
         
