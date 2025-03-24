@@ -2,6 +2,10 @@
 
 Wordle clone written for the terminal in cpp
 
+![alt text](images/Screenshot1.png)
+
+![alt text](images/Screenshot2.png)
+
 ## words.txt
 
 The file of words is taken from this repository:

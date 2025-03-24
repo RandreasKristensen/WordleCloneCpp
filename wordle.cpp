@@ -42,7 +42,7 @@ void updateLetterColors(vector<char>* grayChars, vector<char>* yellowChars, vect
 vector<char> getUsedChars(vector<string> guesses);
 //small function to choose a word from the wordlist
 string chooseWord(vector<string> wordList);
-bool isValidGuess(string word);
+bool isValidGuess(string word, string* errorMessage);
 
 
 int main() {
@@ -56,6 +56,7 @@ int main() {
     //create variables
     bool playing = true;
     bool playAgain = false;
+    string errorMessage;
     string guess;
     
     cout << WHITE << "Welcome to Wordle!" << RESET << endl;
@@ -78,11 +79,18 @@ int main() {
 
         //Play loop
         while (guessesLeft > 0 && !win) {
+            //Display the gamescreen
+            system("CLS");
+            displayGuesses(coloredGuesses);
+            displayKeyboard(guessedLetters, yellowLetters, greenLetters, keyboard);
+            //Display errorMessage if there is any, then reset
+            cout << errorMessage;
+            errorMessage = "";
             //Get the guess
             cout << endl << "Enter a 5-letter guess: " << endl;
             cin >> guess;
             
-            if (!isValidGuess(guess)) {
+            if (!isValidGuess(guess, &errorMessage)) {
                 continue;
             }
 
@@ -100,6 +108,7 @@ int main() {
             //check for win condition
             win = word == guess;
             if (win) cout << endl << GREEN << "CONGRATULATIONS!" << RESET << endl << endl;
+            if (!win) cout << endl << "The word was " << GREEN << word << RESET << endl << endl;
         }
         
         cout << WHITE << "1 for Play Again, 0 for Quit: " << RESET;
@@ -219,13 +228,13 @@ void updateLetterColors(vector<char>* usedChars, vector<char>* yellowChars, vect
     coloredGuesses->emplace_back(coloredGuess);
 }
 
-bool isValidGuess(string word) {
+bool isValidGuess(string word, string* errorMessage) {
     if (word.length() != 5) {
-        cout << RED << "MUST BE 5 LETTERS" << RESET << endl;
+        *errorMessage = RED + "MUST BE 5 LETTERS" + RESET;
         return false;
     }
     if (find(wordList.begin(), wordList.end(), word) == wordList.end()) {
-        cout << RED << "WORD NOT IN LIST" << RESET << endl;
+        *errorMessage = RED + "NOT IN WORDLIST" + RESET;
         return false;
     }
     return true;
