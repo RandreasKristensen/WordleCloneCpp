@@ -80,6 +80,7 @@ int main() {
         while (guessesLeft > 0 && !win) {
             //Display the gamescreen
             system("CLS");
+            cout << endl << endl;
             displayGuesses(coloredGuesses);
             displayKeyboard(guessedLetters, yellowLetters, greenLetters, keyboard);
             //Display errorMessage if there is any, then reset
