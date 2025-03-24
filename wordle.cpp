@@ -16,6 +16,7 @@ const string GRAY = "\033[90m";
 const string RED = "\033[31m";
 const string GREEN = "\033[32m";
 const string YELLOW = "\033[33m";
+const string OFFSET = "    ";
 
 //loading words txt file
 static vector<string> wordList;
@@ -59,7 +60,7 @@ int main() {
     string errorMessage;
     string guess;
     
-    cout << WHITE << "Welcome to Wordle!" << RESET << endl;
+    cout << WHITE << OFFSET << "Welcome to Wordle!" << RESET << endl;
 
     //playloop
     while(playing) {
@@ -84,11 +85,12 @@ int main() {
             displayGuesses(coloredGuesses);
             displayKeyboard(guessedLetters, yellowLetters, greenLetters, keyboard);
             //Display errorMessage if there is any, then reset
-            cout << errorMessage;
+            cout << OFFSET << "  " << errorMessage;
             errorMessage = "";
             //Get the guess
-            cout << endl << "Enter a 5-letter guess: " << endl;
+            cout << endl << OFFSET << OFFSET << "Guess: ";
             cin >> guess;
+            cout << endl;
             
             if (!isValidGuess(guess, &errorMessage)) {
                 continue;
@@ -107,11 +109,11 @@ int main() {
             
             //check for win condition
             win = word == guess;
-            if (win) cout << endl << GREEN << "CONGRATULATIONS!" << RESET << endl << endl;
-            if (!win) cout << endl << "The word was " << GREEN << word << RESET << endl << endl;
+            if (win) cout << endl << OFFSET << GREEN << "CONGRATULATIONS!" << RESET << endl << endl;
+            if (!win) cout << endl << OFFSET <<"The word was " << GREEN << word << RESET << endl << endl;
         }
         
-        cout << WHITE << " 1 for Play Again" << endl << "  0 for Quit" << endl << "      " << RESET;
+        cout << WHITE << OFFSET << " 1 for Play Again" << endl << OFFSET << "    0 for Quit" << endl << OFFSET << OFFSET << OFFSET << RESET;
         cin >> playAgain;
         cout << endl;
         
@@ -146,17 +148,17 @@ vector<char> getUsedChars(vector<string> guesses) {
 void displayGuesses(vector<string> guesses) {
     int guessCount = 6;
     for (string guess : guesses) {
-        cout << "       " << guess << endl;
+        cout << OFFSET << OFFSET << "   " << guess << endl;
         guessCount--;
     }
     while (guessCount != 0) {
-        cout << GRAY << "       " << "GUESS" << RESET << endl;
+        cout << GRAY << OFFSET << OFFSET << "   " << "GUESS" << RESET << endl;
         guessCount--;
     }
 }
 
 void displayKeyboard(vector<char> grayChars, vector<char> yellowChars, vector<char> greenChars, vector<char> keyboard) {
-    cout << endl;
+    cout << endl << OFFSET;
     for (int i = 0; i < keyboard.size(); ++i) {
         char c = keyboard[i];
         if (find(greenChars.begin(), greenChars.end(), c) != greenChars.end()) {
@@ -170,9 +172,9 @@ void displayKeyboard(vector<char> grayChars, vector<char> yellowChars, vector<ch
 
         // Print a new line after each row of the keyboard
         if (i == 9 ) {
-            cout << endl << " ";
+            cout << endl << OFFSET << "  ";
         } else if (i == 18) {
-            cout << endl << "   ";
+            cout << endl << OFFSET << "   ";
         }
     }
     cout << endl;
