@@ -107,7 +107,7 @@ int main() {
             
             //check for win condition
             win = word == guess;
-            if (win) cout << endl << OFFSET << GREEN << "CONGRATULATIONS!" << RESET << endl << endl;
+            if (win) cout << endl << OFFSET << "  " << GREEN << "CONGRATULATIONS!" << RESET << endl << endl;
             if (!win && guessesLeft == 0) cout << endl << OFFSET <<"The word was " << GREEN << word << RESET << endl << endl;
         }
         
