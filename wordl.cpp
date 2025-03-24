@@ -108,7 +108,7 @@ int main() {
                 cout << endl << OFFSET << OFFSET << "   " << GREEN <<"WORDL" << RESET << endl << endl;
                 displayGuesses(coloredGuesses);
                 displayKeyboard(guessedLetters, yellowLetters, greenLetters, keyboard);
-                cout << endl << OFFSET << OFFSET << "Guess: " << word;
+                cout << endl << OFFSET << OFFSET << "Guess: " << guess;
                 cout << endl << endl << OFFSET << "  " << GREEN << "CONGRATULATIONS!" << RESET << endl << endl;
             }
             
@@ -119,7 +119,7 @@ int main() {
                 displayGuesses(coloredGuesses);
                 displayKeyboard(guessedLetters, yellowLetters, greenLetters, keyboard);
                 cout << endl << OFFSET << OFFSET << "Guess: " << word;
-                cout << endl << endl << OFFSET <<"The word was " << GREEN << word << RESET << endl << endl;
+                cout << endl << endl << OFFSET <<"The word was " << GREEN << guess << RESET << endl << endl;
             } 
         }
         //END OF ROUND
