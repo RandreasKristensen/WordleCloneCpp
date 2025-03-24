@@ -55,7 +55,7 @@ int main() {
     system("CLS");
     //create variables
     bool playing = true;
-    bool playAgain = false;
+    int playAgain = 0;
     string errorMessage;
     string guess;
     
@@ -64,7 +64,7 @@ int main() {
     //playloop
     while(playing) {
         //Reset
-        bool playAgain = false;
+        playAgain = 0;
         bool win = false;
         vector<char> guessedLetters = {};
         vector<char> yellowLetters = {};
@@ -111,11 +111,11 @@ int main() {
             if (!win) cout << endl << "The word was " << GREEN << word << RESET << endl << endl;
         }
         
-        cout << WHITE << "1 for Play Again, 0 for Quit: " << RESET;
+        cout << WHITE << " 1 for Play Again" << endl << "  0 for Quit" << endl << "      " << RESET;
         cin >> playAgain;
         cout << endl;
         
-        if (!playAgain)
+        if (playAgain != 1)
             playing = false;
     }
 
