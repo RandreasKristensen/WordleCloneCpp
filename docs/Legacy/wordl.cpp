@@ -1,3 +1,16 @@
+/*
+
+            THIS CODE IS LEGACY
+            IT IS NOT USED IN THE FINAL VERSION OF THE GAME
+            THE PROJECT HAS SINCE BEEN REFACTORED AND REWRITTEN
+            TO BE MORE EFFICIENT AND READABLE, AND USE BETTER PRACTICES
+            THE FINAL VERSION IS IN THE "wordl" FOLDER
+
+*/
+
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>

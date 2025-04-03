@@ -11,6 +11,11 @@ using namespace std;
 
 
 int main() {
+    //SETUP
+
+
+
+    //LOOP
 
     
 }
