@@ -3,11 +3,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <random>
-#include <algorithm>
-#include <ctime> 
-#include <fstream>
-#include <windows.h>
+#include <random> //used for choosing a random word
+#include <algorithm> //used for find()
+#include <ctime> //used for seeding the random number generator
 using namespace std;
 
 //colors for the cout statements
